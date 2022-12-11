@@ -2,13 +2,13 @@ use rand::prelude::*;
 use std::{thread, time};
 
 const SIZE : usize = 48;
-const CHANCE : f64 = 0.2;
-const SLEEP_INTERVAL : time::Duration = time::Duration::from_millis(300);
+const CHANCE : f64 = 0.20;
+const SLEEP_INTERVAL : time::Duration = time::Duration::from_millis(500);
 
 /// Prints the field in my *custom aesthetic*
 fn print_field(field: &[[bool; SIZE]; SIZE]) {
-    for i in 0..SIZE-1 {
-        for j in 0..SIZE-1 {
+    for i in 0..SIZE {
+        for j in 0..SIZE {
             if field[i][j] {
                 print!("🌝")
             } else {
@@ -22,8 +22,8 @@ fn print_field(field: &[[bool; SIZE]; SIZE]) {
 /// Initializes the field with random values according to CHANCE const
 fn init_random_field(field: &mut [[bool; SIZE]; SIZE]) {
     let mut rng = rand::thread_rng();
-    for i in 0..SIZE-1 {
-        for j in 0..SIZE-1 {
+    for i in 0..SIZE {
+        for j in 0..SIZE {
             let roll : f64 = rng.gen();
             if roll > CHANCE {
                 field[i][j] = false;
@@ -34,7 +34,7 @@ fn init_random_field(field: &mut [[bool; SIZE]; SIZE]) {
     }
 }
 
-/// Returns how many livig neighbors the poit coord has
+/// Returns how many living neighbors the point coord has
 fn get_living_neighbor_count(coord: (i32, i32), field: &[[bool; SIZE]; SIZE]) -> u8 {
     let mut count: u8 = 0;
     for i in coord.0-1..coord.0+2 {
@@ -56,8 +56,8 @@ fn get_living_neighbor_count(coord: (i32, i32), field: &[[bool; SIZE]; SIZE]) ->
 
 /// Evolves the given field one tick
 fn tick(field: &mut [[bool; SIZE]; SIZE]) {
-    for i in 0..SIZE-1 {
-        for j in 0..SIZE-1 {
+    for i in 0..SIZE {
+        for j in 0..SIZE {
             let lnc: u8 = get_living_neighbor_count((i as i32, j as i32), &field);
             if field[i][j] && (lnc == 2 || lnc == 3) {
                 // Any live cell with two or three live neighbours survives.
@@ -75,14 +75,10 @@ fn tick(field: &mut [[bool; SIZE]; SIZE]) {
 }
 
 fn main() {
-    println!("Size is {SIZE}");
     let mut field = [[true; SIZE]; SIZE];
-    for i in 0..SIZE-1 {
-        field[i][i] = false;
-    }
     init_random_field(&mut field);
-    let lnc: u8 = get_living_neighbor_count((0,0), &field);
     loop {
+        print!("{esc}[2J{esc}[1;1H", esc = 27 as char);
         print_field(&field);
         tick(&mut field);
         thread::sleep(SLEEP_INTERVAL);
