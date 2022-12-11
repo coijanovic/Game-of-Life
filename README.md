@@ -1,4 +1,4 @@
-I'm trying to learn Rust, so I've implemented a minimal version of [https://en.wikipedia.org/wiki/Conway's_Game_of_Life](Conway's Game of Life).
+I'm trying to learn Rust, so I've implemented a minimal version of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
 
 # Running
 
@@ -6,7 +6,7 @@ To run, use `cargo run .` in the repo's root folder.
 
 # Configuration
 
-The *game* can be configured via three contants in [src/main.rs](`src/main.rs`):
+The *game* can be configured via three contants in [src/main.rs](./src/main.rs):
 
 - `SIZE` determines the size of the (square) playing field in characters.
   Choose a number that is at most equal to the minimum of your terminal's width and height.
