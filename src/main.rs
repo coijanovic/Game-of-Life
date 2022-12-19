@@ -1,7 +1,7 @@
 use rand::prelude::*;
 use std::{thread, time};
 
-const SIZE : usize = 48;
+const SIZE : usize = 20;
 const CHANCE : f64 = 0.20;
 const SLEEP_INTERVAL : time::Duration = time::Duration::from_millis(500);
 
