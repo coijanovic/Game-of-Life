@@ -1,4 +1,11 @@
-I'm trying to learn Rust, so I've implemented a minimal version of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life).
+This is part of a series of fun little programs I write to learn rust:
+
+- [Alder](https://github.com/coijanovic/alder): Conway's Game of Life
+- [Balsa](https://github.com/coijanovic/balsa): Image to Emoji
+
+# Alder
+
+[Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life) has been implemented a million times, so what's one more?
 
 # Running
 
